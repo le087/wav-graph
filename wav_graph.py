@@ -3,9 +3,6 @@
 """Library for parsing wave-files."""
 
 
-import wave
-
-
 class WaveParse(object):
     """Объект предназначен для парсинга wave-файлов и
     содержит информацию о спарсенном файле.

@@ -13,3 +13,7 @@ class TestWaveParse(unittest.TestCase):
 
     def testReadWave(self):
         pass
+
+
+if __name__ == '__main__':
+    unittest.main()
