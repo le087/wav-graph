@@ -3,6 +3,9 @@
 """Library for parsing wave-files."""
 
 
+import wave
+
+
 class WaveParse(object):
     """Объект предназначен для парсинга wave-файлов и
     содержит информацию о спарсенном файле.
@@ -14,7 +17,16 @@ class WaveParse(object):
         Arguments:
         - `filename`: путь до файла
         """
-        self._filename = filename
+        self.filename = filename
+        (self.nchanels, self.sampwidth,
+         self.framerate, self.nframes,
+         self.comptype, self.compname) = self.getparams()
+
+    def getparams(self):
+        """Возвращает параметры wave файла
+        """
+        wave_inst = wave.open(self.filename)
+        return wave_inst.getparams()
 
 
 class WaveGraph(object):
