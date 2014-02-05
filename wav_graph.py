@@ -6,48 +6,41 @@
 import wave
 
 
-class WaveParse(object):
-    """Объект предназначен для парсинга wave-файлов и
-    содержит информацию о спарсенном файле.
-    """
-
-    def __init__(self, filename):
-        """Напишу чего-нибудь позже
-
-        Arguments:
-        - `filename`: путь до файла
-        """
-        self.filename = filename
-        (self.nchanels, self.sampwidth,
-         self.framerate, self.nframes,
-         self.comptype, self.compname) = self.getparams()
-
-    def getparams(self):
-        """Возвращает параметры wave файла
-        """
-        wave_inst = wave.open(self.filename)
-        return wave_inst.getparams()
-
-    def getcontent(self):
-        """Возвращает содержимое wave.
-        Arguments:
-        - `self`:
-        """
-        return wave.open(self.filename)
-
-
 class WaveGraph(object):
     """Рисует различные графики, применяет фильтры.
     """
 
-    def __init__(self, waveparse):
+    def __init__(self, wavfile, m='r'):
         """Первоначально мы выполняем действия только
         для отрисовки волны.
 
         Arguments:
-        - `waveparse`: инстанс класса WaveParse
+        - `wavfile`: инстанс класса Wavfile
         """
-        self.waveparse = waveparse
+        wav = wave.open(wavfile, mode=m)
+        self.nchannels = wav.getnchannels()
+        self.sampwidth = wav.getsampwidth()
+        self.framerate = wav.getframerate()
+        self.nframes = wav.getnframes()
+        self.comptype = wav.getcomptype()
+        self.compname = wav.getcompname()
+        self.content = wav.readframes(self.nframes)
+
+    def info(self, wavfile):
+        """Показывает собранную информацию о wav-файле.
+        """
+        info = """        Информация о wave:
+        ===================================
+        Имя файла: {0}
+        Число каналов: {1}
+        Байт/сэмпл: {2}
+        Фрейм/сек: {3}
+        Всего фреймов: {4}
+        """.format(wavfile, self.nchannels,
+                   self.sampwidth, self.framerate,
+                   self.nframes)
+        print(info)
+        return True
 
     def drawWave(self):
         """Просто рисует волну

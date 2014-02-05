@@ -15,16 +15,18 @@ import wav_graph
 class TestWaveParse(unittest.TestCase):
 
     def setUp(self):
-        self.wave = wav_graph.WaveParse("test.wav")
+        self.wave = wav_graph.WaveGraph("test.wav")
 
     def testReadWave(self):
-        self.assertEqual(self.wave.nchanels, 2)
+        self.assertEqual(self.wave.nchannels, 2)
         self.assertEqual(self.wave.sampwidth, 2)
         self.assertEqual(self.wave.framerate, 44100)
         self.assertEqual(self.wave.nframes, 188806)
         self.assertEqual(self.wave.comptype, "NONE")
         self.assertEqual(self.wave.compname, "not compressed")
-        self.assertEqual(md5.md5.hexdigest(self.wave.getcontent()), "hash")
+
+    def testPrintInfo(self):
+        self.assertEqual(self.wave.info("test.wav"), True)
 
 
 if __name__ == '__main__':
