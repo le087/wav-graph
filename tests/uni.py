@@ -7,7 +7,7 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath(".."))
 
-#import md5
+import md5
 import unittest
 import wav_graph
 
@@ -24,7 +24,7 @@ class TestWaveParse(unittest.TestCase):
         self.assertEqual(self.wave.nframes, 188806)
         self.assertEqual(self.wave.comptype, "NONE")
         self.assertEqual(self.wave.compname, "not compressed")
-        # self.assertEqual(md5.md5.hexdigest(self.wave.content), "hash")
+        self.assertEqual(md5.md5.hexdigest(self.wave.getcontent()), "hash")
 
 
 if __name__ == '__main__':

@@ -28,6 +28,13 @@ class WaveParse(object):
         wave_inst = wave.open(self.filename)
         return wave_inst.getparams()
 
+    def getcontent(self):
+        """Возвращает содержимое wave.
+        Arguments:
+        - `self`:
+        """
+        return wave.open(self.filename)
+
 
 class WaveGraph(object):
     """Рисует различные графики, применяет фильтры.
@@ -40,7 +47,30 @@ class WaveGraph(object):
         Arguments:
         - `waveparse`: инстанс класса WaveParse
         """
-        self._waveparse = waveparse
+        self.waveparse = waveparse
+
+    def drawWave(self):
+        """Просто рисует волну
+
+        Arguments:
+        - `self`:
+        """
+        return 0
+
+    def drawFR(self):
+        """Рисует АЧХ
+        """
+        return 0
+
+    def drawRectangle(self):
+        """Цифровой полосовй фильтр прямоуголное окно
+        """
+        return 0
+
+    def drawHemming(self):
+        """Цифровой полосовой фильт окно Хемминга
+        """
+        return 0
 
 
 def main():
