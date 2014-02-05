@@ -4,6 +4,9 @@
 
 
 import wave
+import numpy
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 
 
 class WaveGraph(object):
@@ -42,12 +45,26 @@ class WaveGraph(object):
         print(info)
         return True
 
+    def getarraysamples(self):
+        """Возваращает массив из спарсеного в строке потока
+        """
+        types = {
+            1: numpy.int8,
+            2: numpy.int16,
+            3: numpy.int32
+        }
+        return numpy.fromstring(self.content, dtype=types[self.sampwidth])
+
     def drawWave(self):
         """Просто рисует волну
 
         Arguments:
         - `self`:
         """
+        for n in range(self.nchanels):
+            channel = getarraysamples()[n::self.nchannels]
+
+        
         return 0
 
     def drawFR(self):
