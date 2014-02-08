@@ -27,6 +27,8 @@ class TestWaveParse(unittest.TestCase):
     def testPrintInfo(self):
         self.assertEqual(self.wave.info("test.wav"), True)
 
+    def testDrawWave(self):
+        self.wave.drawWave()
 
 if __name__ == '__main__':
     unittest.main()
