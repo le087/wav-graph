@@ -83,7 +83,7 @@ class WaveGraph(object):
 
     def format_db(self, x, pos=None):
         """Возвращает текущую амплитуду в дицибелах
-        
+
         - `x`: координата
         - `pos`: значение по вертикали
         """
